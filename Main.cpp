@@ -19,11 +19,11 @@ are called. It will contain the main loop and will link to the other modules.
  
 //Main Loop
 void loop() {
-	const double VISIONRATE = 60;
+	const double VISIONRATE = 24;		//Refresh rate in hertz. 1/VISIONRATE is the maximum amount that we can sleep
 	double millisecondsToSleep = ( 1 / VISIONRATE) * 1000; 	//Refresh rate of our eyes is 60Hz, or 16.667 ms.
 															//If we want to refresh our 
 
-	sleep(millsecondsToSleep);		//Sleep for the interval
+	sleep(millisecondsToSleep);		//Sleep for the interval
 	performActions();
 }
 
