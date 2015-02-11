@@ -1,0 +1,3 @@
+/*
+	This modules defines how the arduino will communicate with the metering circuit. 
+*/

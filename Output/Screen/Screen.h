@@ -1,0 +1,3 @@
+/*
+	This module will define how the arduino will communicate with the screen that we will integrate with out project.
+*/

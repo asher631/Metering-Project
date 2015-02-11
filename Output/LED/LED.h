@@ -1,0 +1,3 @@
+/*
+	This module will define how the arduino will communicate with the variety of LEDs that the project will integrate.
+*/

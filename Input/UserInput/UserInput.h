@@ -1,0 +1,3 @@
+/*
+This module defines how the arduino will respond given user input from buttons or other interfaces.
+*/
