@@ -20,11 +20,11 @@ are called. It will contain the main loop and will link to the other modules.
 //Main Loop
 void loop() {
 	const double VISIONRATE = 24;		//Refresh rate in hertz. 1/VISIONRATE is the maximum amount that we can sleep
-	double millisecondsToSleep = ( 1 / VISIONRATE) * 1000; 	//Refresh rate of our eyes is 60Hz, or 16.667 ms.
-															//If we want to refresh our 
+	double millisecondsToSleep = ( 1 / VISIONRATE) * 1000; 	//Refresh rate of our eyes is 60Hz, or 16.667 ms. If we want to refresh our 
+	double currentTime = 0;				//Current millisecond
 
 	sleep(millisecondsToSleep);		//Sleep for the interval
-	performActions();
+	performActions(currentTime);
 }
 
 //The function we will go to when we want to sleep,
@@ -37,8 +37,15 @@ bool sleep(int milliseconds){
 
 //The function we will go to when we are awake and we want to perform out actions
 //before we go back to sleep.
-bool performActions(){
+bool performActions(currentTime){
 	
+	//Logic here that will determine which actions to perform based on the value of the current time
+	//Actions to perform:
+	//Check for user input
+	//Poll IC if running
+	//Talk to LEDs
+	//Talk to screen
+
 	return true;
 }
 
