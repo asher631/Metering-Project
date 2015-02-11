@@ -15,13 +15,14 @@ are called. It will contain the main loop and will link to the other modules.
  #include "Input/UserInput/UserInput.h"
  #include "Input/Metering/Metering.h"
  #include "Output/Screen/Screen.h"
- #include "Output/LEDs/LED.h"
+ #include "Output/LED/LED.h"
  
 //Main Loop
 void loop() {
-	int millisecondsToSleep = 1000;
-	
-	
+	const double VISIONRATE = 60;
+	double millisecondsToSleep = ( 1 / VISIONRATE) * 1000; 	//Refresh rate of our eyes is 60Hz, or 16.667 ms.
+															//If we want to refresh our 
+
 	sleep(millsecondsToSleep);		//Sleep for the interval
 	performActions();
 }
