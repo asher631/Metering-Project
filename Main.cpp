@@ -13,14 +13,30 @@ are called. It will contain the main loop and will link to the other modules.
  
 //Main Loop
 void loop() {
-
-	//GLOBALS -- Keep the number of these to a minimum
-	
-	//END GLOBALS
+	int millisecondsToSleep = 1000;
 	
 	
-	
+	sleep(millsecondsToSleep);		//Sleep for the interval
+	performActions();
 	
 
 
 }
+
+//The function we will go to when we want to sleep,
+//Will return true if there weren't any errors during the sleep cycle
+//Will return false if there was an error generated during the sleep cycle
+bool sleep(int milliseconds){
+
+	return true;
+}
+
+//The function we will go to when we are awake and we want to perform out actions
+//before we go back to sleep.
+bool performActions(){
+	
+	
+
+	return true;
+}
+
