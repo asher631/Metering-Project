@@ -46,7 +46,7 @@ void Setup() {
 //Main Loop
 void loop() {
 
-	Sleep();						//Sleep for the interval
+	Sleep();							//Sleep for the interval
 	PerformActions(currentSleepCycle);	//Perform relevant actions
 
 }

@@ -5,7 +5,7 @@
 * For: Senior Design - Metering Project
 * Date: 2/12/2015
 *
-* This library will rap the lower power library to provide less options for
+* This library will wrap the lower power library to provide less options for
 * our current program. Many of the functions are presented to the user will
 * be simplified and only the features that we need will be wrapped.
 *	
@@ -34,8 +34,6 @@ class Sleep
 		bool TurnDown();	//Turn off all non essential features.
 		bool TurnUp();		//Turn on all features on the chip.			
 	private:
-		
-	
 	
 }
 
