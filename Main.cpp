@@ -14,45 +14,76 @@
 * if the chip should turn on or off the non essential features (like the ADC).
 */
 
- //Libraries to include
- #include <Input/Metering/ADE7753.h>							//ADE7753 communication library
- #include <Output/Screen/Adafruit-GFX-library/Adafruit_GFX.h>	//Library that the sharp memory library extends
- #include <Output/Screen/SharpMemoryLCD/SharpMemoryLcd.h>		//Sharp Memory LCD communication library
- #include <PowerSaving/RocketScreamLibrary/LowPower/h>			//Provides powerful low-power sleep functions
- 
- //User defined modules
- #include "Input/UserInput/UserInput.h"
- #include "Input/Metering/Metering.h"
- #include "Output/Screen/Screen.h"
- #include "Output/LED/LED.h"
- 
+//Libraries to include
+#include "Input/Metering/ADE7753.h"							//ADE7753 communication library
+#include "Output/Screen/Adafruit-GFX-library/Adafruit_GFX.h"	//Library that the sharp memory library extends
+#include "Output/Screen/SharpMemoryLCD/SharpMemoryLcd.h"		//Sharp Memory LCD communication library
+#include "PowerSaving/RocketScreamLibrary/LowPower/h"			//Provides powerful low-power sleep functions
+
+//User defined modules
+#include "Input/UserInput/UserInput.h"
+#include "Input/Metering/Metering.h"
+#include "Output/Screen/Screen.h"
+#include "Output/LED/LED.h"
+
+//Global Variables
+const int readUserInputInterval = 5;		//Check every 5 sleep cycles
+const int readkMeteringInputInterval = 3;	//Check every 3 sleep cycles
+const int talkLEDInterval = 1;				//Talk to them every sleep cycle
+const int talkScreenInterval = 1;			//Talk to it every sleep cycle
+
+double currentTime;							//The current time in milliseconds
+double currentSleepCycle;					//The current sleep cycle we are on.
+
+Sleep sleeper;								//The sleep object, will be used to perform rest operations
+
+//Setup function, used for initializing variables, setting, classes
+void Setup() {
+	currentTime = 0;
+	currentSleepCycle = 0;
+}
+
 //Main Loop
 void loop() {
-	double currentTime;				//The current time in milliseconds
 
-	sleep();						//Sleep for the interval
-	performActions(currentTime);	//Perform relevant actions
-	
+	Sleep();						//Sleep for the interval
+	PerformActions(currentSleepCycle);	//Perform relevant actions
+
 }
 
 //The function we will go to when we want to sleep,
 //Will return true if there weren't any errors during the sleep cycle
 //Will return false if there was an error generated during the sleep cycle
-bool sleep(){
+//Increments currentSleepCycle after a rest
+bool Sleep(){
 
+	sleeper.Rest();
+	currentSleepCycle ++;
 	return true;
 }
 
 //The function we will go to when we are awake and we want to perform out actions
 //before we go back to sleep.
-bool performActions(double currentTime){
-	
+bool PerformActions(double sleepCycle){
 	//Logic here that will determine which actions to perform based on the value of the current time
 	//Actions to perform:
 	//Check for user input
 	//Poll IC if running
 	//Talk to LEDs
 	//Talk to screen
+	
+	if(sleepCycle % readUserInputInterval == 0){
+		//Read user input, such as restart, start, timer, etc.
+	}
+	if(sleepCycle % readkMeteringInputInterval == 0) {
+		//Read metering input
+	}
+	if(sleepCycle % talkLEDInterval == 0) {
+		//Display the current power being produced to the LEDs
+	}
+	if(sleepCycle % talkScreenInterval == 0) {
+		//Print the new screen on the memory LCD
+	}
 
 	return true;
 }
