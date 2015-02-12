@@ -1,17 +1,12 @@
 /*
-* Title: Sleep.cpp
+* Title: Main.cpp
 * Author: Larkin Crain
 * Group: The A Team
 * For: Senior Design - Metering Project
 * Date: 2/12/2015
 *
-* Description: This is a class definition of the Sleep library that will have two core functions: 
-* 1) Rest - a short (15ms) power down that attempt to conserve power in between times when the 
-*      processor needs to be computing
-* 2) Hibernate - An indefinite rest that will only be awaken from with an awake signal.
+* Hub of the program. Where everything comes together.
 *
-* The library includes two other functions, TurnUp and TurnDown that allow the user to specify
-* if the chip should turn on or off the non essential features (like the ADC).
 */
 
 //Libraries to include
