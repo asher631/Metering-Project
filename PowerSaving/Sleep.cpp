@@ -1,5 +1,10 @@
 /*
-	CLass definitions of the sleep library
+	CLass definitions of the sleep library. Function List:
+	Constructor: 	Initializes any settings
+	Rest: 			A short, 15ms power down
+	Hibernate:		Power down until a wake signal comes in.
+	TurnDown:		Turn off all non essential features of the chip.
+	TurnUp:			Turn on all features of the chip, reset to default.
 */
 
 #include "Sleep.h"
