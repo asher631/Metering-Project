@@ -13,9 +13,9 @@
 class Sleep
 {
 	public:
-		Sleep();
-		bool rest(double milliseconds);
-		bool hibernate(double milliseconds);
+		Sleep(double );		//Initialize the Sleep object
+		bool Rest();		//Sleep for a short amount of time, specifies the sleep cycle
+		bool Hibernate();	//Deep sleep until an input wakes it up
 	private:
 		
 	
