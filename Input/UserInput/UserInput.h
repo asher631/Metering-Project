@@ -34,4 +34,8 @@ class UserInput
 		
 		const int powerButtonThreshold = 7;		//Once the count hits this threshold, turn off
 		const int startButtonThreshold = 5;		//Once the count hits this threshold, restart
+		
+		//TO DO: These should be changed to pins rather than integers
+		const int powerButton = 0;				//Location of the pin where the power button is connected
+		const int startButton = 0;				//Location of the pin where the start button is connected
 }
