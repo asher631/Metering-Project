@@ -24,6 +24,7 @@ class Screen {
 		bool Clear();					//Clear the screen
 		bool Flash();					//Quickly make the screen flash (by inverting and un-inverting it quickly)
 	private:
-	
+		SHARPMEMORYLCD screenObject;	//The library for talking to the Sharp Memory LCD
+		int flashDelay;					//The number of microseconds to delay between inverting when flashing the screen
 	
 }
