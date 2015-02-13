@@ -33,5 +33,7 @@ class Metering
 		bool Reset();						//Reset the device and the device cache.
 
 	private:
+	
+		ADE7753 meteringCircuit;
 		
 }

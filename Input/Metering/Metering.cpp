@@ -20,10 +20,14 @@ Metering::Metering() {
 
 double Metering::ReadInstantaneousPower(){
 	//Return the current power being produced at this moment
+	
+	return (meteringCircuit.irms() * meteringCircuit.vrms());
 }
 
 double Metering::ReadTotalEnergy() {
 	//Return the total energy produced up to this moment
+	
+	return meteringCircuit.getActiveEnergyLineSync();
 }
 
 bool Metering::Reset() {
