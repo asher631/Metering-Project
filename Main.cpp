@@ -86,12 +86,10 @@ bool PerformActions(double sleepCycle){
 	double meterReading 0;
 	
 	if(sleepCycle % readUserInputInterval == 0){
-		//Read user input, such as restart, start, timer, etc.
-		HandleButtonPresses();
+		HandleButtonPresses();	//Read user input, such as restart, start, timer, etc.
 	}
 	if(sleepCycle % readkMeteringInputInterval == 0) {
-		//Read metering input
-		meterReading = ReadInstantaneousPowerFromMeter();
+		meterReading = ReadInstantaneousPowerFromMeter();	//Read metering input
 	}
 	if(sleepCycle % talkLEDInterval == 0) {
 		//Display the current power being produced to the LEDs
