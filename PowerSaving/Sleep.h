@@ -34,6 +34,6 @@ class Sleep
 		bool TurnDown();	//Turn off all non essential features.
 		bool TurnUp();		//Turn on all features on the chip.			
 	private:
-	
+		void BeginWakeUp();	//The function that is called when we receive an interrupt signal 
 }
 
