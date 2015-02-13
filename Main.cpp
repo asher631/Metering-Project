@@ -43,6 +43,7 @@ double currentSleepCycle;	//The current sleep cycle we are on.
 Sleep sleeper;				//The sleep object, will be used to perform rest operations
 UserInput userIn;			//The user input object, will be used to evaluate any input from the user
 MeterInput meterIn;			//The meter input object, will be used to read from the metering circuit
+Screen screenOut;			//The screen output object, we will use it to communicate with our screen
 
 //Setup function, used for initializing variables, setting, classes
 void Setup() {
@@ -93,6 +94,7 @@ bool PerformActions(double sleepCycle){
 	}
 	if(sleepCycle % talkLEDInterval == 0) {
 		//Display the current power being produced to the LEDs
+		
 	}
 	if(sleepCycle % talkScreenInterval == 0) {
 		//Print the new screen on the memory LCD
@@ -124,6 +126,8 @@ double ReadInstantaneousPowerFromMeter(){
 	return meterIn.ReadInstantaneousPower();
 }
 
+//Thus function will start a new instance, resetting the timer, sleep cycle, clearing the screen,
+//Possibly flashing the LEDs?
 bool StartNewInstance() {
 	//This function will clear the state of the machine, such as time, sleep cycle,
 	//clear the screen and reset the timer, and clear the cache on the metering circuit,
