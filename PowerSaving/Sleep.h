@@ -1,6 +1,6 @@
 /*
 * Title: Sleep.h
-* Author: Larkin Crain
+* Authors: Larkin Crain
 * Group: The A Team
 * For: Senior Design - Metering Project
 * Date: 2/12/2015

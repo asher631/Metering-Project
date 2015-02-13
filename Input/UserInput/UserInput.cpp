@@ -16,9 +16,13 @@
 * 
 */
 
-UserInput::UserInput(){
+UserInput::UserInput(int powerpin, int startpin){
 	//Initialize any settings
-
+	
+	//Set user input pins
+	powerPin = powerpin;
+	startPin = startpin
+	
 }
 
 bool UserInput::CheckPower() {

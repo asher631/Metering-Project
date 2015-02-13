@@ -24,18 +24,28 @@
 //Global Variables
 const int readUserInputInterval = 5;		//Check every 5 sleep cycles
 const int readkMeteringInputInterval = 3;	//Check every 3 sleep cycles
-const int talkLEDInterval = 1;				//Talk to them every sleep cycle
-const int talkScreenInterval = 1;			//Talk to it every sleep cycle
+const int talkLEDInterval = 2;				//Talk to them every 2 sleep cycles
+const int talkScreenInterval = 2;			//Talk to it every 2 sleep cycles
 
-double currentTime;							//The current time in milliseconds
-double currentSleepCycle;					//The current sleep cycle we are on.
+const int PIN_POWER = -1;
+const int PIN_START = -1;
+const int PIN_METERING_COM = -1;
+const int PIN_LEDS[] = {-1, -1, -1};
 
-Sleep sleeper;								//The sleep object, will be used to perform rest operations
+double currentTime;			//The current time in milliseconds
+double currentSleepCycle;	//The current sleep cycle we are on.
+
+Sleep sleeper;				//The sleep object, will be used to perform rest operations
+UserInput userIn;			//The user input object, will be used to evaluate any input from the user
 
 //Setup function, used for initializing variables, setting, classes
 void Setup() {
 	currentTime = 0;
 	currentSleepCycle = 0;
+	
+	userIn(PIN_POWER, PIN_START);
+	//Specify which pins are to be used as input and output
+	//Example: pinMode(ledPin, OUTPUT);      // sets the digital pin as output
 }
 
 //Main Loop

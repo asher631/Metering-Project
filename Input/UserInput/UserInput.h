@@ -20,7 +20,7 @@
 class UserInput
 {
 	public:
-		UserInput();			//Initialize the Sleep object.
+		UserInput(int powerpin, int startpin);			//Initialize the Sleep object.
 		
 		bool checkPower();			//Check to see if the powerButtonCount has reached the threshold
 		bool CheckRestart();			//Check to see if the startButtonCount has reached the threshold
@@ -36,6 +36,6 @@ class UserInput
 		const int startButtonThreshold = 5;		//Once the count hits this threshold, restart
 		
 		//TO DO: These should be changed to pins rather than integers
-		const int powerButton = 0;				//Location of the pin where the power button is connected
-		const int startButton = 0;				//Location of the pin where the start button is connected
+		int powerPin = -1;				//Location of the pin where the power button is connected
+		int startPin = -1;				//Location of the pin where the start button is connected
 }
