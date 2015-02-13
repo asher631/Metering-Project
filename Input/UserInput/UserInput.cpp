@@ -25,7 +25,7 @@ UserInput::UserInput(int powerpin, int startpin){
 	
 }
 
-bool UserInput::CheckPower() {
+bool UserInput::checkPowerButton() {
 	//If we have pressed the button long enough to warrant turning off, then turn off
 
 	if(powerButtonCount >= powerButtonThreshold)
@@ -34,7 +34,7 @@ bool UserInput::CheckPower() {
 		return false;
 }
 
-bool UserInput::CheckStart() {
+bool UserInput::CheckRestartButton() {
 	//If we have pressed the start button long enough to return to a home setting
 	if(startButtonCount == startButtonThreshold)
 		return true;

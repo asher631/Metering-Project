@@ -35,13 +35,14 @@ const int PIN_POWER = -1;				//Pin that is associated with the power button
 const int PIN_START = -1;				//The pin that is associated with the start button
 const int PIN_METERING_COM = -1;		//The pin that is associated with the metering circuit
 const int PIN_LEDS[] = {-1, -1, -1};	//The pin array that is associated with the LEDs
-cost int PIN_SCREEN[] = {-1, -1, -1};	//The pin arry that is associated with the screen
+cost int PIN_SCREEN[] = {-1, -1, -1};	//The pin array that is associated with the screen
 
 double currentTime;			//The current time in milliseconds
 double currentSleepCycle;	//The current sleep cycle we are on.
 
 Sleep sleeper;				//The sleep object, will be used to perform rest operations
 UserInput userIn;			//The user input object, will be used to evaluate any input from the user
+MeterInput meterIn;			//The meter input object, will be used to read from the metering circuit
 
 //Setup function, used for initializing variables, setting, classes
 void Setup() {
@@ -56,7 +57,7 @@ void Setup() {
 //Main Loop
 void loop() {
 
-	Sleep();							//Sleep for the interval
+	Sleep();							//Sleep for the interval (30ms)
 	PerformActions(currentSleepCycle);	//Perform relevant actions
 
 }
@@ -82,12 +83,15 @@ bool PerformActions(double sleepCycle){
 	//Poll IC if running
 	//Talk to LEDs
 	//Talk to screen
+	double meterReading 0;
 	
 	if(sleepCycle % readUserInputInterval == 0){
 		//Read user input, such as restart, start, timer, etc.
+		HandleButtonPresses();
 	}
 	if(sleepCycle % readkMeteringInputInterval == 0) {
 		//Read metering input
+		meterReading = ReadInstantaneousPowerFromMeter();
 	}
 	if(sleepCycle % talkLEDInterval == 0) {
 		//Display the current power being produced to the LEDs
@@ -99,4 +103,36 @@ bool PerformActions(double sleepCycle){
 	return true;
 }
 
+//This function will take the 
+bool HandleButtonPresses() {
+	bool powerButtonPressed = false;
+	bool restartButtonPressed = false;
+	
+	powerButtonPressed = userIn.CheckPowerButton();
+	restartButtonPressed = userIn.CheckRestartButton();
+	
+	if(powerButtonPressed && !restartButtonPressed) {
+		//Then we need to go into shutdown mode
+		sleeper.Hibernate();
+	}
+	else if(restartButtonPressed && !powerButtonPressed) {
+		//Then we need to restart the state of the machine
+		
+	}
+}
+
+//This function will read the result from the meter
+double ReadInstantaneousPowerFromMeter(){
+	return meterIn.ReadInstantaneousPower();
+}
+
+bool StartNewInstance() {
+	//This function will clear the state of the machine, such as time, sleep cycle,
+	//clear the screen and reset the timer, and clear the cache on the metering circuit,
+	//perhaps even flash the LEDs to indicate that there is a new state.
+	
+	currentTime = 0;
+	currentSleepCycle = 0;
+	
+}
 

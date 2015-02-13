@@ -22,8 +22,8 @@ class UserInput
 	public:
 		UserInput(int powerpin, int startpin);			//Initialize the Sleep object.
 		
-		bool checkPower();			//Check to see if the powerButtonCount has reached the threshold
-		bool CheckRestart();		//Check to see if the startButtonCount has reached the threshold
+		bool checkPowerButton();			//Check to see if the powerButtonCount has reached the threshold
+		bool CheckRestartButton();		//Check to see if the startButtonCount has reached the threshold
 		
 	private:
 		bool PollPowerButton();		//Check to see if the power button is pressed
@@ -34,4 +34,8 @@ class UserInput
 		
 		const int powerButtonThreshold = 7;		//Once the count hits this threshold, turn off
 		const int startButtonThreshold = 5;		//Once the count hits this threshold, restart
+		
+		//TO DO: These should be changed to pins rather than integers
+		int powerPin = -1;				//Location of the pin where the power button is connected
+		int startPin = -1;				//Location of the pin where the start button is connected
 }
