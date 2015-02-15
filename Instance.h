@@ -1,0 +1,43 @@
+/*
+* Title: Instance.h
+* Author: Larkin Crain
+* Group: The A Team
+* For: Senior Design - Metering Project
+* Date: 2/12/2015
+*
+* This is the abstraction of an instance of a metering. That is, when the user selects that they would like
+* to begin monitoring the amount of energy produced during a certain interval, the time from the moment that
+* the start button is pressed to the end of the specified interval is the instance. The instance will remain
+* active until the user resets it or the microcontroller loses power.
+*
+*/
+
+//Prevents issues with accidental double linking
+#ifndef Instance_h
+#define Instance_h
+
+//Describes the state of the instance
+enum InstanceState {
+	OFF,				//The instance hasn't stated, getting ready to start
+	STARTED,			//The instance is going, computing power, and the timer is counting down
+	COMPLETED			//The instance has completed fully. 
+};
+
+class Instance {
+	public:
+		bool Sleep();							//Will put the microprocessor to sleep for 30ms
+		bool PerformActions();					//Will perform certain actions depending upon the current clock cycle
+		
+		bool UpdatePower(double powerAddition);	//Updates the total power developed
+		int HandleUserInput(bool powerButtonPress, bool startButtonPress); //Given the current state, determine the course of action
+		
+		bool Restart();							//Sets the state to OFF, and immediately
+		bool Stop();							//Sets the state to OFF
+		
+		double averagePower;					//The average power produced
+		double totalEnergy;						//The total energy developed up to now.
+		InstanceState state;					//The current state of the instance
+	private:
+		double currentTimeMillseconds;		//The time on the timer
+		double currentSleepCycle;			//The current sleep cycle that the instance is on	
+}

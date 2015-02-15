@@ -13,10 +13,11 @@
 #include "Arduino.h"
 
 //Libraries from third parties to include
-#include "Input/Metering/ADE7753.h"							//ADE7753 communication library
+#include "Input/Metering/ADE7753.h"								//ADE7753 communication library
 #include "Output/Screen/Adafruit-GFX-library/Adafruit_GFX.h"	//Library that the sharp memory library extends
 #include "Output/Screen/SharpMemoryLCD/SharpMemoryLcd.h"		//Sharp Memory LCD communication library
 #include "PowerSaving/RocketScreamLibrary/LowPower/h"			//Provides powerful low-power sleep functions
+#include "Instance.h"											//Provides an abstracted definition for a metering instance
 
 //User defined modules
 #include "Input/UserInput/UserInput.h"
@@ -44,6 +45,7 @@ Sleep sleeper;				//The sleep object, will be used to perform rest operations
 UserInput userIn;			//The user input object, will be used to evaluate any input from the user
 MeterInput meterIn;			//The meter input object, will be used to read from the metering circuit
 Screen screenOut;			//The screen output object, we will use it to communicate with our screen
+Instance currentInstance;	//The current instance object
 
 //Setup function, used for initializing variables, setting, classes
 void Setup() {
@@ -53,77 +55,15 @@ void Setup() {
 	userIn(PIN_POWER, PIN_START);
 	//Specify which pins are to be used as input and output
 	//Example: pinMode(ledPin, OUTPUT);      // sets the digital pin as output
+	
 }
 
 //Main Loop
 void loop() {
 
-	Sleep();							//Sleep for the interval (30ms)
-	PerformActions(currentSleepCycle);	//Perform relevant actions
+	currentInstance.Sleep();											//Sleep for the interval (30ms)
+	currentInstance.PerformActions(currentSleepCycle);	//Perform relevant actions
 
-}
-
-//The function we will go to when we want to sleep,
-//Will return true if there weren't any errors during the sleep cycle
-//Will return false if there was an error generated during the sleep cycle
-//Increments currentSleepCycle after a rest
-bool Sleep(){
-
-	sleeper.Rest();
-	currentSleepCycle ++;
-	
-	return true;
-}
-
-//The function we will go to when we are awake and we want to perform out actions
-//before we go back to sleep.
-bool PerformActions(double sleepCycle){
-	//Logic here that will determine which actions to perform based on the value of the current time
-	//Actions to perform:
-	//Check for user input
-	//Poll IC if running
-	//Talk to LEDs
-	//Talk to screen
-	double meterReading 0;
-	
-	if(sleepCycle % readUserInputInterval == 0){
-		HandleButtonPresses();	//Read user input, such as restart, start, timer, etc.
-	}
-	if(sleepCycle % readkMeteringInputInterval == 0) {
-		meterReading = ReadInstantaneousPowerFromMeter();	//Read metering input
-	}
-	if(sleepCycle % talkLEDInterval == 0) {
-		//Display the current power being produced to the LEDs
-		
-	}
-	if(sleepCycle % talkScreenInterval == 0) {
-		//Print the new screen on the memory LCD
-	}
-
-	return true;
-}
-
-//This function will take the 
-bool HandleButtonPresses() {
-	bool powerButtonPressed = false;
-	bool restartButtonPressed = false;
-	
-	powerButtonPressed = userIn.CheckPowerButton();
-	restartButtonPressed = userIn.CheckRestartButton();
-	
-	if(powerButtonPressed && !restartButtonPressed) {
-		//Then we need to go into shutdown mode
-		sleeper.Hibernate();
-	}
-	else if(restartButtonPressed && !powerButtonPressed) {
-		//Then we need to restart the state of the machine
-		
-	}
-}
-
-//This function will read the result from the meter
-double ReadInstantaneousPowerFromMeter(){
-	return meterIn.ReadInstantaneousPower();
 }
 
 //Thus function will start a new instance, resetting the timer, sleep cycle, clearing the screen,
