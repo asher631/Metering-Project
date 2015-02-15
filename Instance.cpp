@@ -82,5 +82,4 @@ bool Instance::StartNewInstance() {
 	
 	currentTime = 0;
 	currentSleepCycle = 0;
-	
 }
