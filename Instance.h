@@ -37,7 +37,18 @@ class Instance {
 		double averagePower;					//The average power produced
 		double totalEnergy;						//The total energy developed up to now.
 		InstanceState state;					//The current state of the instance
+		
 	private:
 		double currentTimeMillseconds;		//The time on the timer
 		double currentSleepCycle;			//The current sleep cycle that the instance is on	
+		
+		const int readUserInputInterval = 3;		//Check every 5 sleep cycles
+		const int readkMeteringInputInterval = 2;	//Check every 3 sleep cycles
+		const int talkLEDInterval = 1;				//Talk to them every 2 sleep cycles
+		const int talkScreenInterval = 1;			//Talk to it every 2 sleep cycles
+
+		Sleep sleeper;			//The sleep object, will be used to perform rest operations
+		UserInput userIn;		//The user input object, will be used to evaluate any input from the user
+		MeterInput meterIn;		//The meter input object, will be used to read from the metering circuit
+		Screen screenOut;		//The screen output object, we will use it to communicate with our screen
 }

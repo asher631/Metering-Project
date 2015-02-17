@@ -10,6 +10,17 @@
 *
 */
 
+//The constructor, will initially set the state to be OFF
+//and will set the time information to 0
+Instance::Instance(){
+	state = OFF;
+}
+
+//This function will start a new instance, changing it's state from OFF to STARTED
+bool Instance::Begin(){
+	state = STARTED;
+}
+
 //The function we will go to when we want to sleep,
 //Will return true if there weren't any errors during the sleep cycle
 //Will return false if there was an error generated during the sleep cycle
@@ -82,4 +93,5 @@ bool Instance::StartNewInstance() {
 	
 	currentTime = 0;
 	currentSleepCycle = 0;
+	state = OFF;
 }
