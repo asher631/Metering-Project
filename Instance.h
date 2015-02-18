@@ -21,6 +21,12 @@
 #include "Output/Screen/Screen.h"
 #include "Output/LED/LED.h"
 
+//Libraries from third parties to include
+#include "Input/Metering/ADE7753.h"								//ADE7753 communication library
+#include "Output/Screen/Adafruit-GFX-library/Adafruit_GFX.h"	//Library that the sharp memory library extends
+#include "Output/Screen/SharpMemoryLCD/SharpMemoryLcd.h"		//Sharp Memory LCD communication library
+#include "PowerSaving/RocketScreamLibrary/LowPower/h"			//Provides powerful low-power sleep functions
+
 //Describes the state of the instance
 enum InstanceState {
 	OFF,				//The instance hasn't stated, getting ready to start

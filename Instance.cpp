@@ -16,7 +16,6 @@ Instance::Instance(){
 	//Specify which pins are to be used as input and output
 	//Example: pinMode(ledPin, OUTPUT);      // sets the digital pin as output
 	userIn(PIN_POWER, PIN_START);
-	
 	state = OFF;
 }
 
@@ -39,7 +38,7 @@ bool Instance::Sleep(){
 
 //The function we will go to when we are awake and we want to perform out actions
 //before we go back to sleep.
-bool Instance::PerformActions(double sleepCycle){
+bool Instance::PerformActions(){
 	//Logic here that will determine which actions to perform based on the value of the current time
 	//Actions to perform:
 	//Check for user input
@@ -56,10 +55,12 @@ bool Instance::PerformActions(double sleepCycle){
 	}
 	if(sleepCycle % talkLEDInterval == 0) {
 		//Display the current power being produced to the LEDs
-		
+		//Clark, call your LED talking function. We'll give you a number, you convert it into a serial stream
+		//and send it to the LEDS
 	}
 	if(sleepCycle % talkScreenInterval == 0) {
 		//Print the new screen on the memory LCD
+		char 
 	}
 
 	return true;
