@@ -13,6 +13,10 @@
 //The constructor, will initially set the state to be OFF
 //and will set the time information to 0
 Instance::Instance(){
+	//Specify which pins are to be used as input and output
+	//Example: pinMode(ledPin, OUTPUT);      // sets the digital pin as output
+	userIn(PIN_POWER, PIN_START);
+	
 	state = OFF;
 }
 

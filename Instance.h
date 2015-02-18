@@ -8,13 +8,18 @@
 * This is the abstraction of an instance of a metering. That is, when the user selects that they would like
 * to begin monitoring the amount of energy produced during a certain interval, the time from the moment that
 * the start button is pressed to the end of the specified interval is the instance. The instance will remain
-* active until the user resets it or the microcontroller loses power.
+* active until the user resets it or the micro-controller loses power.
 *
 */
 
 //Prevents issues with accidental double linking
 #ifndef Instance_h
 #define Instance_h
+
+#include "Input/UserInput/UserInput.h"
+#include "Input/Metering/Metering.h"
+#include "Output/Screen/Screen.h"
+#include "Output/LED/LED.h"
 
 //Describes the state of the instance
 enum InstanceState {
@@ -51,4 +56,11 @@ class Instance {
 		UserInput userIn;		//The user input object, will be used to evaluate any input from the user
 		MeterInput meterIn;		//The meter input object, will be used to read from the metering circuit
 		Screen screenOut;		//The screen output object, we will use it to communicate with our screen
+		
+		const int PIN_INTERRUPT = 2				//The pin for the interrupt. This cannot change.
+		const int PIN_POWER = -1;				//Pin that is associated with the power button
+		const int PIN_START = -1;				//The pin that is associated with the start button
+		const int PIN_METERING_COM = -1;		//The pin that is associated with the metering circuit
+		const int PIN_LEDS[] = {-1, -1, -1};	//The pin array that is associated with the LEDs
+		const int PIN_SCREEN[] = {-1, -1, -1};	//The pin array that is associated with the screen
 }
